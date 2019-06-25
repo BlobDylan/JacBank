@@ -3,7 +3,7 @@ import random
 
 def generate(small, capital, numbers, chars):
     p = ''
-    length = random.randint(20,25)
+    length = random.randint(12,15)
     for i in range(length):
         x = []
         if small:

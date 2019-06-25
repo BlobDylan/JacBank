@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QDialog, QApplication,QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets
 from app import Ui_MainWindow
 from signUp import Ui_Dialog5
+from forgot import Ui_Dialog7
 from db_func import *
 
 class Ui_Dialog(object):
@@ -48,13 +49,18 @@ class Ui_Dialog(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
+    def forgot_my_password(self):
+        self.window = QtWidgets.QDialog()
+        self.ui = Ui_Dialog7()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, Dialog):
         Dialog.setObjectName("Login")
         Dialog.resize(400, 300)
         Dialog.setMinimumSize(QtCore.QSize(400, 300))
         Dialog.setMaximumSize(QtCore.QSize(400, 300))
         Dialog.setWindowIcon(QtGui.QIcon('icon.jpg'))
-
         self.textBrowser = QtWidgets.QTextBrowser(Dialog)
         self.textBrowser.setGeometry(QtCore.QRect(10, 20, 380, 90))
         self.textBrowser.setObjectName("textBrowser")
@@ -83,13 +89,17 @@ class Ui_Dialog(object):
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(310, 250, 75, 23))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.openWindow)
 
         self.pushButton2 = QtWidgets.QPushButton(Dialog)
         self.pushButton2.setGeometry(QtCore.QRect(20, 250, 75, 23))
         self.pushButton2.setObjectName("pushButton2")
-
-        self.pushButton.clicked.connect(self.openWindow)
         self.pushButton2.clicked.connect(self.opensignup)
+
+        self.pushButton3 = QtWidgets.QPushButton(Dialog)
+        self.pushButton3.setGeometry(QtCore.QRect(105, 250, 120, 23))
+        self.pushButton3.setObjectName("pushButton3")
+        self.pushButton3.clicked.connect(self.forgot_my_password)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -107,6 +117,7 @@ class Ui_Dialog(object):
         self.label_3.setText(_translate("Dialog", "Password:"))
         self.pushButton.setText(_translate("Dialog", "Log-In"))
         self.pushButton2.setText(_translate("Dialog", "Sign Up"))
+        self.pushButton3.setText(_translate("Dialog", "Forgot my password"))
 
 
 if __name__ == "__main__":

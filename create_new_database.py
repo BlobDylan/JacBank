@@ -7,6 +7,7 @@ cursor.execute('''
 CREATE TABLE IF NOT EXISTS user(
 userID INTEGER PRIMARY KEY,
 username VARCHAR(20) NOT NULL,
+email TEXT NOT NULL,
 password TEXT NOT NULL);
 ''')
 
