@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from db_func import change_user_password
+
+"""This is the file that contains the UI needed to display the dialog where the user inputs a new password for JacBank"""
 class Ui_Dialog9(object):
     def setupUi(self, Dialog, dialog2,dialog3,email):
         Dialog.setObjectName("Dialog")
@@ -26,6 +28,8 @@ class Ui_Dialog9(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def change_password(self, newpass, email,dialog2,dialog3,d):
+        """calls change_user_password from db_func and displays that the password was indeed changed.
+        also closes the dialogs right after."""
         change_user_password(newpass, email)
         msg = QMessageBox()
         msg.setText("Password Changed")

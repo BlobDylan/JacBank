@@ -5,6 +5,10 @@ from change_password import Ui_Dialog9
 from hashlib import sha224
 
 
+"""This is the file containing the UI needed to display the dialog where the user can 
+enter the code he received in his email in order to change his password in case he forgot it"""
+
+
 class Ui_Dialog8(object):
     def setupUi(self, Dialog, code_hash,dialog2,email):
         Dialog.setObjectName("Dialog")
@@ -35,6 +39,7 @@ class Ui_Dialog8(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def resend(self,email):
+        """resend's the email"""
         self.code_hash = email_auth(email)
         msg = QMessageBox()
         msg.setText("New code sent")
@@ -43,6 +48,7 @@ class Ui_Dialog8(object):
         msg.exec()
 
     def check_hash(self, code_hash, user_input,d,dialog2,email):
+        """checks if the code that was inputted was correct"""
         if code_hash == sha224(user_input.encode('utf-8')).hexdigest():
             d.close()
             self.window = QtWidgets.QDialog()

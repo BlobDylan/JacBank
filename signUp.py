@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from db_func import email_auth, check_username
+from db_func import email_auth, check_username,check_email
 from email_auth import Ui_Dialog6
 
 class Ui_Dialog5(object):
@@ -13,6 +13,13 @@ class Ui_Dialog5(object):
                 if r == 'taken':
                     msg = QMessageBox()
                     msg.setText("Username taken")
+                    msg.setWindowTitle("JacBank")
+                    msg.setWindowIcon(QtGui.QIcon('icon.jpg'))
+                    msg.exec()
+
+                elif(check_email(email)):
+                    msg = QMessageBox()
+                    msg.setText("Email in use")
                     msg.setWindowTitle("JacBank")
                     msg.setWindowIcon(QtGui.QIcon('icon.jpg'))
                     msg.exec()

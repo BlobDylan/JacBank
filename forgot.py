@@ -3,6 +3,9 @@ from PyQt5.QtWidgets import QMessageBox
 from db_func import check_email,email_auth
 from email_auth2 import Ui_Dialog8
 
+"""This is the file containing the UI needed to display the dialog where the user can make JacBank send him an email in order
+to change his password"""
+
 class Ui_Dialog7(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -31,6 +34,7 @@ class Ui_Dialog7(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def send(self,email,d):
+        """sends an email containing a code"""
         if check_email(email):
             x = email_auth(email)
             d.close()

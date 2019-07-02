@@ -4,9 +4,13 @@ from edit import Ui_Dialog3
 from keyinput import Ui_Dialog4
 from db_func import *
 
+"""This is the file that contains the UI needed to display the main window of JacBank where the user can add new websites
+ refresh the page access the website to edit them or open them in the browser or copy the password"""
+
 
 class Ui_MainWindow(object):
     def refresh(self,id,main):
+        """refreshes the main window"""
         main.close()
         if id is not None:
             self.window = QtWidgets.QMainWindow()
@@ -15,12 +19,14 @@ class Ui_MainWindow(object):
             self.window.show()
 
     def web_checked(self,website_names,urls,id):
+        """function used to check which website the user clicked on"""
         for i in range(len(self.lst)):
             if self.lst[i].isChecked():
                 self.openDialog2(id,website_names[i][0],urls[i][0],i)
                 self.lst[i].setChecked(False)
 
     def copy_checked(self,website_names,id,lst2):
+        """function used to open the key input dialog when the user wants to copy his password"""
         for i in range(len(lst2)):
             if lst2[i].isChecked():
                 index = i
@@ -32,6 +38,7 @@ class Ui_MainWindow(object):
         self.window.show()
 #
     def openDialog(self, id):
+        """function used to open the new dialog when the user wants add a new website"""
         if id is not None:
             self.window = QtWidgets.QDialog()
             self.ui = Ui_Dialog2()
@@ -39,6 +46,7 @@ class Ui_MainWindow(object):
             self.window.show()
 
     def openDialog2(self, id,webname,url,i):
+        """function used to open the edit dialog when the used wants to edit a website or open it in the browser"""
         if id is not None:
             self.window = QtWidgets.QDialog()
             self.ui = Ui_Dialog3()
@@ -72,7 +80,7 @@ class Ui_MainWindow(object):
         self.formLayout.setContentsMargins(0, 0, 0, 0)
         self.formLayout.setObjectName("formLayout")
 
-        if website_names is not None:
+        if website_names is not None and website_names is not 'a':
             for i in range(len(website_names)):
                 btn = QtWidgets.QPushButton(self.formLayoutWidget)
                 btn2 = QtWidgets.QPushButton(self.formLayoutWidget)

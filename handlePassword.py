@@ -5,8 +5,9 @@ from db_func import get_xpath,add_xpath
 
 
 def try_auto_enter_password(url, password):
+    """try's to open chrome and auto enter the given password in a given url"""
     xpath = get_xpath(url)
-    if xpath is not None:
+    if xpath is not None and xpath is not 'a':
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_experimental_option("detach", True)
         driver = webdriver.Chrome("chromedriver", options=chrome_options)
@@ -19,8 +20,10 @@ def try_auto_enter_password(url, password):
         return 1
 
 def auto_enter_password(url, password, xpath):
+    """try's to open chrome and auto enter the given password in a given url and xpath.
+    in case of a success it saves the xpath in the database with the url"""
     x = get_xpath(url)
-    if x is None:
+    if x is None and x is not 'a':
         try:
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_experimental_option("detach", True)
@@ -44,6 +47,7 @@ def auto_enter_password(url, password, xpath):
         return 0
 
 def copy_to_clipboard(x):
+    """copies a given text to the clipboard"""
     print("copied to clipboard")
     pyperclip.copy(x)
 

@@ -4,6 +4,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from db_func import add_new_website, change_website_name, remove_website, get_website_names,change_website_xpath,get_xpath
 from keyinput import Ui_Dialog4
 
+"""This is the file containing the UI needed to display the dialog where the user can edit
+their websites name, delete it or open it."""
+
+
 class Ui_Dialog3(object):
 
     def setupUi(self, Dialog,id,webname,url,index):
@@ -77,18 +81,22 @@ class Ui_Dialog3(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def cancel(self,d):
+        """closes the dialog"""
         d.close()
 
     def ok(self,id,webname,new_name,d,xpath,url):
+        """changes the website name"""
         change_website_name(id,webname,new_name)
         change_website_xpath(id,url,xpath)
         d.close()
 
     def remove(self,id,webname,d):
+        """removes the website"""
         remove_website(id, webname)
         d.close()
 
     def open(self,d,website_names,url,xpath,index,id):
+        """opens the website in chrome and opens keyinput dialog"""
         self.window = QtWidgets.QDialog()
         self.ui = Ui_Dialog4()
         self.ui.setupUi(self.window, id, index, website_names, url, xpath, "open")
